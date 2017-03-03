@@ -1,0 +1,167 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kamień, papier i nożyce</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img class="img-responsive center-block" src="http:/5watt.eu/images/knp.jpg" alt="Kamień, papier i nożyce">
+            <h4 class="modal-title text-center">Hello gamer! Let's get to know each other ;)</h4>
+          </div>
+          <div class="modal-body">
+            <p>Enter your name below:</p>
+            <div class="input-group">
+              <span class="input-group-addon">@</span>
+              <input type="text" class="form-control" id="userName" placeholder="Username" aria-describedby="userName">
+            </div>
+            <div class="test"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary save">Save</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="myModal2" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-center">Wynik gry</h4>
+          </div>
+          <div class="modal-body finish text-center">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary ok">JESZCZE RAZ!</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="container-fluid main">
+    
+      <div class="header"></div>
+
+      <div class="container">
+          <div class="hello">
+          <h1 class="text-center">Kamień, Papier i Nożyce!</h1></div>
+      </div>
+
+      <div class="row"> 
+
+        <div class="col-lg-4">
+          <div class="myChoice text-center">
+            <h4>Wybierz swoją broń </h4>
+            <button class="btn stone"><b>K</b>amień</button>
+            <button class="btn paper"><b>P</b>apier</button>
+            <button class="btn scissors"><b>N</b>ożyce</button>
+          </div>
+          <div class="help">
+            <h4>Możesz używać klawiszy:</h4>
+            <p>
+              <kbd>K</kbd>-Kamień,<br>
+              <kbd>N</kbd>-Nożyce,<br>
+              <kbd>P</kbd>-Papier,<br>
+              <kbd>SPACE</kbd>-przycisk START
+            </p>
+          </div>
+          <div class="me">
+            <h4>Życie:</h4>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped active progress-live" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 100%;">
+                100%
+              </div>
+            </div>
+            <div class="inactive">
+              <h4>Atak:</h4>
+              <div class="progress">
+                <div class="progress-bar progress-bar-info progress-atack" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+                  0%
+                </div>
+              </div>
+              <h4>Obrona:</h4>
+              <div class="progress">
+                <div class="progress-bar progress-bar-warning progress-defense" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 40%;">
+                  40%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="battleField">
+            <div class="box">
+              <div class="row dark">
+                <div class="col-lg-12 text-center">
+                  <p class="round">RUNDA </p>
+                </div>
+              </div>
+
+              <div class="row dark">
+                <div class='col-lg-5 text-center left-side'>
+                  
+                </div>
+                <div class='col-lg-2 text-center'>
+                  <p>VS</p>
+                </div>
+                <div class='col-lg-5 text-center right-side'>
+                  
+                </div>
+              </div>
+
+              <div class="row dark">
+                <div id="Start" class="col-lg-12 text-center">
+                  <button class="btn start">START</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        <div class="col-lg-4">
+          <div class="comp">
+            <div id="zombie" class="entry">
+              <div></div>
+            </div>
+            <h4>Życie:</h4>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped active progress-ailive" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 100%;">
+                100%
+              </div>
+            </div>
+            <div class="inactive">
+              <h4>Atak:</h4>
+              <div class="progress">
+                <div class="progress-bar progress-bar-info progress-aiatack" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+                  0%
+                </div>
+              </div>
+              <h4>Obrona:</h4>
+              <div class="progress">
+                <div class="progress-bar progress-bar-warning progress-aidefense" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 40%;">
+                  40%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="container">
+        <div class="log"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>

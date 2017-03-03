@@ -1,0 +1,122 @@
+body {
+	background: #272B30;
+}
+.main h1,
+.main h2,
+.main h4 {
+	color: #C8C8C8;
+	font-weight: bold;
+}
+.log {
+	height: 150px;
+	border: 1px solid #fff;
+	padding: 2px 10px;
+	overflow: auto; 
+}
+.log p{
+	color: #fff;
+}
+.battleField {
+	position: relative;
+	background: url('https://lifehacker.ru/wp-content/uploads/2014/05/08102143-Rock-Paper-Scissors-520x520.jpg') 0/contain no-repeat;
+	/*display: flex;
+	justify-content: center;
+	align-items: center;*/
+	margin: 25px auto;
+	max-width: 100%;
+	min-height: 520px;
+	opacity: 20;
+
+}
+.box {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+}
+.box p{
+	font-size: 2.5em;
+	color: #C8C8C8;
+	font-weight: bold;
+	line-height: 2.5em;
+	margin: 0; 
+}
+.dark {
+	background: rgba(0,0,0,0.6);
+	min-height: 69px;
+	margin: 0;
+}
+.myChoice {
+	margin: 25px;
+}
+.help {
+	background: rgba(255,255,255,0.6);
+	margin: 25px;
+	padding: 5px;
+}
+.help h4{
+	color: #000;
+}
+.hide {
+	display: none;
+}
+.left-side, .right-side {
+	margin-top: 20.5px;
+}
+#Start button{
+	margin-top: 17.5px;
+}
+.inactive {
+	opacity: 0.5;
+}
+
+.entry {
+  text-align: center;
+  min-height: 267px;
+  position: relative;
+}
+.entry div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.entry div:before,
+.entry div:after {
+  display: block;
+  content: '';
+  position: absolute;
+}
+#zombie div {
+  width: 130px;
+  height: 160px;
+  margin-left: -65px;
+  margin-top: -80px;
+  background-image: linear-gradient(to top, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), linear-gradient(to right, #98fb98, #98fb98), radial-gradient(circle, #57c889 25%, #98fb98 25%, #98fb98 50%, transparent 50%), radial-gradient(circle, #57c889 25%, #98fb98 25%, #98fb98 50%, transparent 50%), radial-gradient(circle, #ffc0cb 50%, transparent 50%), radial-gradient(circle, #ffc0cb 50%, transparent 50%), radial-gradient(circle, #ffc0cb 50%, transparent 50%), radial-gradient(circle, #ffc0cb 50%, transparent 50%);
+  background-repeat: no-repeat;
+  background-size: 50px 15px, 50px 80%, 30px 30px, 30px 30px, 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+  background-position: center 92%, center 100%, -2px 60%, 103% 60%, 30px -5px, 50px -5px, 65px 0, 78px 14px;
+}
+#zombie div:before {
+  width: 100px;
+  height: 135px;
+  left: 15px;
+  background-image: radial-gradient(circle, #222 15%, #ffd700 15%, #ffd700 30%, white 30%, white 50%, transparent 50%), radial-gradient(circle, #222 15%, #ffd700 15%, #ffd700 30%, white 30%, white 50%, transparent 50%), radial-gradient(ellipse, rgba(0,0,0,0.2) 50%, transparent 50%), radial-gradient(ellipse, rgba(0,0,0,0.2) 50%, transparent 50%), linear-gradient(#98fb98, #98fb98), radial-gradient(circle, #98fb98 40%, #57c889 40%, #57c889 53%, transparent 42%), linear-gradient(25deg, #98fb98 80%, transparent 80%);
+  background-repeat: no-repeat;
+  background-size: 24px 24px, 24px 24px, 50px 40px, 50px 40px, 25px 13px, 25px 25px, 100% 100%;
+  background-position: 18px 67px, 56px 67px, 4px 57px, 44px 57px, center 70%, center 75%, 0 0;
+  border-radius: 20px 20px 30px 30px;
+}
+#zombie div:after {
+  width: 42px;
+  height: 23px;
+  margin-left: -21px;
+  left: 50%;
+  top: 70%;
+  background-color: rgba(0,0,0,0.3);
+  background-image: repeating-linear-gradient(to right, white, white 4px, transparent 4px, transparent 7px), repeating-linear-gradient(to right, white, white 4px, transparent 4px, transparent 7px), linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0.2));
+  background-repeat: repeat-x, repeat-x, no-repeat;
+  background-size: 100% 6px, 100% 6px, 31px 15px;
+  background-position: 1px 2px, 1px 18px, 5px 5px;
+  border-radius: 6px;
+  box-shadow: -8px 5px 0 #98fb98, 8px 5px 0 #98fb98;
+}
