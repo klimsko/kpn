@@ -1,13 +1,13 @@
 // RANDOM function ------------------------
 function rand(min, max) {
-  var argc = arguments.length
+  var argc = arguments.length;
   if (argc === 0) {
-    min = 1
-    max = 2147483647
+    min = 1;
+    max = 2147483647;
   } else if (argc === 1) {
-    throw new Error('Warning: rand() expects exactly 2 parameters, 1 given')
+    throw new Error('Warning: rand() expects exactly 2 parameters, 1 given');
   }
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 
 }
 $(document).ready(function() {
@@ -91,27 +91,36 @@ $('.myChoice .btn').on('click', function(){
 // ----------- AI make choice function ------------------
 function aiCleverChoise2(){
   if (win){
-    if (aiIndex === 1){
+    if (aiIndex === myChoice){
+      aiIndex = rand(1, 3);
+      console.log('RANDOM');
+    }
+    else if (aiIndex === 1){
       aiIndex = 2;
     }
-    if (aiIndex === 2){
+    else if (aiIndex === 2){
       aiIndex = 3;
     }
-    if (aiIndex === 3){
+    else if (aiIndex === 3){
       aiIndex = 1;
     }
   }
   else {
-    if (aiIndex === 1){
+    if (aiIndex === myChoice){
+      aiIndex = rand(1, 3);
+      console.log('RANDOM');
+    }
+    else if (aiIndex === 1){
       aiIndex = 3;
     }
-    if (aiIndex === 2){
+    else if (aiIndex === 2){
       aiIndex = 1;
     }
-    if (aiIndex === 3){
+    else if (aiIndex === 3){
       aiIndex = 2;
     }
   }
+  aiButton();
 }
 function aiCleverChoise(){
   console.log('myChoice = '+myChoice);
@@ -212,8 +221,13 @@ $('.start').on('click', function(){
     aiChoice();
     console.log('aiIndex if = '+aiIndex);
   } else {
-    aiCleverChoise();
-    console.log('aiIndex else = '+aiIndex);
+    if ((myHealth/aiHealth) < 2){
+      aiCleverChoise();
+      console.log('Strategia #1');
+    } else {
+      aiCleverChoise2();
+      console.log('Strategia #2');
+    }
   }
   compare();
   gameOver();
@@ -257,16 +271,20 @@ function round(){
 // ----------- Next ROUND function END------------------
 
 // ----------- Live progress bar -------------------------
-var myHealth = 100;
+var myHealth = 150;
 var aiHealth = 100;
+var myProgressProcent = 100;
 
 function myhealthChange(){
   myHealth -= 10;
-  $(".progress-live").css("width", myHealth + "%").text(myHealth + " %");
+  myProgressProcent = myHealth*100/150;
+  console.log('myHealth '+myHealth);
+  console.log('myProgressProcent '+myProgressProcent);
+  $(".progress-live").css("width", myProgressProcent + "%").text(myHealth);
 }
 function aihealthChange(){
   aiHealth -= 10;
-  $(".progress-ailive").css("width", aiHealth + "%").text(aiHealth + " %");
+  $(".progress-ailive").css("width", aiHealth + "%").text(aiHealth);
 }
 // ----------- Live progress bar END-------------------------
 
@@ -286,13 +304,16 @@ function gameOver(){
 }
 
 function reset(){
-  myHealth = 100;
+  myHealth = 150;
   aiHealth = 100;
-  $(".progress-live").css("width", myHealth + "%").text(myHealth + " %");
-  $(".progress-ailive").css("width", aiHealth + "%").text(aiHealth + " %");
+  myProgressProcent = 100;
+  $(".progress-live").css("width", myProgressProcent + "%").text(myHealth);
+  $(".progress-ailive").css("width", aiHealth + "%").text(aiHealth);
   $('.log').empty();
   $('.left-side').empty();
   $('.right-side').empty();
 }
+
+reset();
 
 });
