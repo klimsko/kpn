@@ -271,25 +271,18 @@ function aihealthChange(){
 // ----------- Live progress bar END-------------------------
 
 function gameOver(){
+  $('#myModal2').modal({
+    backdrop: 'static',
+    keyboard: false,
+    show: true
+  });
 
   if (aiHealth <= 0) {
-    $('#myModal2').modal({
-      backdrop: 'static',
-      keyboard: false,
-      show: true
-    });
     $('.finish').html('<p>'+'<b>'+'Wygrałeś!!!'+'</b>'+'</p>');
-    setTimeout(function () { $('#myModal2 button').focus(); }, 100);
   }
   else if (myHealth <= 0){
-    $('#myModal2').modal({
-      backdrop: 'static',
-      keyboard: false,
-      show: true
-    });
     $('.finish').html('<p>'+'<b>'+'Przegrałeś ;)'+'</b>'+'</p>')
   }
-
 }
 
 function reset(){
