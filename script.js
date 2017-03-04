@@ -10,8 +10,7 @@ function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 
 }
-
-window.onload = function() {
+$(document).ready(function() {
 
 // ----------- MODAL ------------------
 $('#myModal').modal({
@@ -194,7 +193,6 @@ function compare(){
   }
   else if (myChoice === aiIndex && myChoice !== 0){
     $('.log').prepend('<p>'+'--> Remis'+'</p>');
-    myhealthChange();
   }
   else {
     $('.log').prepend('<p>'+'--> MUSISZ WYBRAĆ BROŃ! Naciśnij '+
@@ -263,11 +261,11 @@ var myHealth = 100;
 var aiHealth = 100;
 
 function myhealthChange(){
-  myHealth = myHealth - 10;
+  myHealth -= 10;
   $(".progress-live").css("width", myHealth + "%").text(myHealth + " %");
 }
 function aihealthChange(){
-  aiHealth = aiHealth - 10;
+  aiHealth -= 10;
   $(".progress-ailive").css("width", aiHealth + "%").text(aiHealth + " %");
 }
 // ----------- Live progress bar END-------------------------
@@ -281,6 +279,7 @@ function gameOver(){
       show: true
     });
     $('.finish').html('<p>'+'<b>'+'Wygrałeś!!!'+'</b>'+'</p>');
+    setTimeout(function () { $('#myModal2 button').focus(); }, 100);
   }
   else if (myHealth <= 0){
     $('#myModal2').modal({
@@ -303,4 +302,4 @@ function reset(){
   $('.right-side').empty();
 }
 
-}
+});
