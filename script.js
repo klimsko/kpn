@@ -214,8 +214,13 @@ $('.start').on('click', function(){
     aiChoice();
     console.log('aiIndex if = '+aiIndex);
   } else {
-    aiCleverChoise();
-    console.log('aiIndex else = '+aiIndex);
+    if ((myHealth/aiHealth) < 2){
+      aiCleverChoise();
+      console.log('Strategia #1');
+    } else {
+      aiCleverChoise2();
+      console.log('Strategia #2');
+    }
   }
   compare();
   gameOver();
