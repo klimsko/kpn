@@ -37,6 +37,7 @@ $('#myModal').unbind("keyup").keyup(function(e){
 });
 
 $('.save').click(function () {
+  difficultLevel();
   userName = $('#userName').val();
   if (userName == ""){
     userName = 0;
@@ -49,7 +50,6 @@ $('.save').click(function () {
   } else {
     $('#myModal').modal('hide');
     $('.myChoice h4').append(userName+'!');
-    console.log(userName);
   }
 });
 $('.ok').click(function (){
@@ -57,6 +57,41 @@ $('.ok').click(function (){
   reset();
 })
 // ----------- MODAL END ------------------
+
+// ----------- DIFFICULT LEVELS ------------------
+var health = 190;
+var myHealth;
+
+function difficultLevel(){
+  if (document.getElementById('optionsRadios1').checked){
+    myHealth = health = 190;
+
+  }
+  else if (document.getElementById('optionsRadios2').checked){
+    myHealth = health = 150;
+    
+  }
+  else if (document.getElementById('optionsRadios3').checked){
+    myHealth = health = 100;
+    
+  }
+  $(".progress-live").text(myHealth);
+}
+// $('.radio').on('click', function(){
+//     if ($(this).find('input').attr('id') == 'optionsRadios1'){
+//       myHealth = health = 190;
+//       console.log(health);
+//     }
+//     else if ($(this).find('input').attr('id') == 'optionsRadios2'){
+//       myHealth = health = 150;
+//       console.log(health);
+//     }
+//     else if ($(this).find('input').attr('id') == 'optionsRadios3'){
+//       myHealth = health = 100;
+//       console.log(health);
+//     }
+// });
+// ----------- DIFFICULT LEVELS END------------------
 
 // ----------- Choice function ------------------
 function keypress(){
@@ -91,9 +126,10 @@ $('.myChoice .btn').on('click', function(){
 // ----------- AI make choice function ------------------
 function aiCleverChoise2(){
   if (win){
+    console.log('aiIndex = '+aiIndex, 'myChoice = '+myChoice);
     if (aiIndex === myChoice){
       aiIndex = rand(1, 3);
-      console.log('RANDOM');
+      console.log('RANDOM WIN');
     }
     else if (aiIndex === 1){
       aiIndex = 2;
@@ -106,18 +142,22 @@ function aiCleverChoise2(){
     }
   }
   else {
+    console.log('aiIndex = '+aiIndex, 'myChoice = '+myChoice);
     if (aiIndex === myChoice){
       aiIndex = rand(1, 3);
-      console.log('RANDOM');
+      console.log('RANDOM LOSE');
     }
     else if (aiIndex === 1){
       aiIndex = 3;
+      console.log('LOSE 1-3');
     }
     else if (aiIndex === 2){
       aiIndex = 1;
+      console.log('LOSE 2-1');
     }
     else if (aiIndex === 3){
       aiIndex = 2;
+      console.log('LOSE 3-2');
     }
   }
   aiButton();
@@ -161,7 +201,6 @@ function aiChoice(){
   if (myChoice !== 0){
     execOnes = 1;
     aiIndex = rand(1, 3);
-    console.log(aiIndex);
     aiButton();
   }
 }
@@ -219,7 +258,6 @@ $('.start').on('click', function(){
   round();
   if (execOnes === 0){
     aiChoice();
-    console.log('aiIndex if = '+aiIndex);
   } else {
     if ((myHealth/aiHealth) < 2){
       aiCleverChoise();
@@ -271,13 +309,13 @@ function round(){
 // ----------- Next ROUND function END------------------
 
 // ----------- Live progress bar -------------------------
-var myHealth = 150;
+
 var aiHealth = 100;
 var myProgressProcent = 100;
 
 function myhealthChange(){
   myHealth -= 10;
-  myProgressProcent = myHealth*100/150;
+  myProgressProcent = myHealth*100/health;
   console.log('myHealth '+myHealth);
   console.log('myProgressProcent '+myProgressProcent);
   $(".progress-live").css("width", myProgressProcent + "%").text(myHealth);
@@ -287,24 +325,26 @@ function aihealthChange(){
   $(".progress-ailive").css("width", aiHealth + "%").text(aiHealth);
 }
 // ----------- Live progress bar END-------------------------
-
-function gameOver(){
+function modal2(){
   $('#myModal2').modal({
     backdrop: 'static',
     keyboard: false,
     show: true
   });
-
+}
+function gameOver(){
   if (aiHealth <= 0) {
     $('.finish').html('<p>'+'<b>'+'Wygrałeś!!!'+'</b>'+'</p>');
+    modal2();
   }
   else if (myHealth <= 0){
-    $('.finish').html('<p>'+'<b>'+'Przegrałeś ;)'+'</b>'+'</p>')
+    $('.finish').html('<p>'+'<b>'+'Przegrałeś ;)'+'</b>'+'</p>');
+    modal2();
   }
 }
 
 function reset(){
-  myHealth = 150;
+  myHealth = health;
   aiHealth = 100;
   myProgressProcent = 100;
   $(".progress-live").css("width", myProgressProcent + "%").text(myHealth);
