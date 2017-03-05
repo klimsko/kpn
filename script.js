@@ -259,7 +259,7 @@ $('.start').on('click', function(){
   if (execOnes === 0){
     aiChoice();
   } else {
-    if ((myHealth/aiHealth) < 2){
+    if (aiHealth < myHealth){
       aiCleverChoise();
       console.log('Strategia #1');
     } else {
