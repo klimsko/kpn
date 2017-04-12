@@ -49,9 +49,9 @@ $('.save').click(function () {
     }
   } else {
     $('#myModal').modal('hide');
-    keyboard();
     $('.me .name h2').text(userName);
-  }
+    keyboard();
+    }
 });
 $('.ok').click(function (){
   $('#myModal2').modal('hide');
@@ -343,10 +343,12 @@ function gameOver(){
   if (aiHealth <= 0) {
     $('.finish').html('<p>'+'<b>'+'Wygrałeś!!!'+'</b>'+'</p>');
     modal2();
+    runda = 0;
   }
   else if (myHealth <= 0){
     $('.finish').html('<p>'+'<b>'+'Przegrałeś ;)'+'</b>'+'</p>');
     modal2();
+    runda = 0;
   }
 }
 
@@ -359,7 +361,6 @@ function reset(){
   $('.log').empty();
   $('.left-side').empty();
   $('.right-side').empty();
-  $('.round').empty();
 }
 
 reset();
