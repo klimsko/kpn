@@ -1,6 +1,8 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kamień, papier i nożyce</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -75,25 +77,21 @@
           <h1 class="text-center">Kamień, Papier i Nożyce!</h1></div>
       </div>
 
-      <div class="row"> 
+ 
 
-        <div class="col-lg-4">
+        
           <div class="myChoice text-center">
             <h4>Wybierz swoją broń </h4>
             <button class="btn stone"><b>K</b>amień</button>
             <button class="btn paper"><b>P</b>apier</button>
             <button class="btn scissors"><b>N</b>ożyce</button>
           </div>
-          <div class="help">
-            <h4>Możesz używać klawiszy:</h4>
-            <p>
-              <kbd>K</kbd>-Kamień,<br>
-              <kbd>N</kbd>-Nożyce,<br>
-              <kbd>P</kbd>-Papier,<br>
-              <kbd>SPACE</kbd>-przycisk START
-            </p>
-          </div>
+          
           <div class="me">
+            <div id="sully" class="entry">
+              <div></div>
+            </div>
+            <div class="name"><h2></h2></div>
             <h4>Życie:</h4>
             <div class="progress">
               <div class="progress-bar progress-bar-success progress-bar-striped active progress-live" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 100%;">
@@ -114,44 +112,45 @@
                 </div>
               </div>
             </div>
+            <div class="help">
+            <h4>Możesz używać klawiszy:</h4>
+            <p>
+              <kbd>K</kbd>-Kamień,<br>
+              <kbd>N</kbd>-Nożyce,<br>
+              <kbd>P</kbd>-Papier
+            </p>
           </div>
-        </div>
+          </div>
+          
 
-        <div class="col-lg-4">
+
+        
           <div class="battleField">
             <div class="box">
-              <div class="row dark">
-                <div class="col-lg-12 text-center">
+              <div class="dark">
+                
                   <p class="round">RUNDA </p>
-                </div>
+                
               </div>
 
-              <div class="row dark">
-                <div class='col-lg-5 text-center left-side'>
-                  
-                </div>
-                <div class='col-lg-2 text-center'>
-                  <p>VS</p>
-                </div>
-                <div class='col-lg-5 text-center right-side'>
-                  
-                </div>
+              <div class="dark">
+                <div class="left-side"></div>
+                <div class="vs"><img src="vs.png" alt="VS"></div>
+                <div class="right-side"></div>
+                
               </div>
 
-              <div class="row dark">
-                <div id="Start" class="col-lg-12 text-center">
-                  <button class="btn start">START</button>
-                </div>
-              </div>
+              <div class="log"></div>
             </div>
           </div>
-        </div>
+        
           
-        <div class="col-lg-4">
+        
           <div class="comp">
             <div id="zombie" class="entry">
               <div></div>
             </div>
+            <div style="text-align: center"><h2> *** AI *** </h2></div>
             <h4>Życie:</h4>
             <div class="progress">
               <div class="progress-bar progress-bar-success progress-bar-striped active progress-ailive" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 100%;">
@@ -173,13 +172,13 @@
               </div>
             </div>
           </div>
-        </div>
+        
 
       </div>
-      <div class="container">
+      <!-- <div class="container">
         <div class="log"></div>
-      </div>
-    </div>
+      </div> -->
+    
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

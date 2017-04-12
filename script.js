@@ -22,8 +22,8 @@ $('#myModal').modal({
 var noName = ['Enter your name!', 'Are you jocking?', 'Enter your kurwa name!'];
 
 $('#myModal').on('shown.bs.modal', function () {
-  $('#userName').focus()
-})
+  $('#userName').focus();
+});
 
 var userName;
 var click = 0;
@@ -49,11 +49,13 @@ $('.save').click(function () {
     }
   } else {
     $('#myModal').modal('hide');
-    $('.myChoice h4').append(userName+'!');
+    keyboard();
+    $('.me .name h2').text(userName);
   }
 });
 $('.ok').click(function (){
   $('#myModal2').modal('hide');
+
   reset();
 })
 // ----------- MODAL END ------------------
@@ -64,33 +66,21 @@ var myHealth;
 
 function difficultLevel(){
   if (document.getElementById('optionsRadios1').checked){
-    myHealth = health = 190;
+    health = 190;
+    myHealth = health;
 
   }
   else if (document.getElementById('optionsRadios2').checked){
     myHealth = health = 150;
-    
+    myHealth = health;
   }
   else if (document.getElementById('optionsRadios3').checked){
     myHealth = health = 100;
-    
+    myHealth = health;
   }
   $(".progress-live").text(myHealth);
 }
-// $('.radio').on('click', function(){
-//     if ($(this).find('input').attr('id') == 'optionsRadios1'){
-//       myHealth = health = 190;
-//       console.log(health);
-//     }
-//     else if ($(this).find('input').attr('id') == 'optionsRadios2'){
-//       myHealth = health = 150;
-//       console.log(health);
-//     }
-//     else if ($(this).find('input').attr('id') == 'optionsRadios3'){
-//       myHealth = health = 100;
-//       console.log(health);
-//     }
-// });
+
 // ----------- DIFFICULT LEVELS END------------------
 
 // ----------- Choice function ------------------
@@ -103,15 +93,16 @@ function keypress(){
         $('.left-side').html('<button class="btn btn-primary scissors-1 btn-lg">Nożyce</button>')
         break;
       case 3:
-        $('.left-side').html('<button class="btn btn-primary papier-1 btn-lg">Papier</button>')   
+        $('.left-side').html('<button class="btn btn-primary papier-1 btn-lg">Papier</button>')  
     }
   }
 
 var myChoice = 0;
 $('.myChoice .btn').on('click', function(){
-  myChoice = $(this).text();
+
+  var txtBtn = $(this).text();
   
-  switch (myChoice){
+  switch (txtBtn){
     case 'Kamień': myChoice = 1
       break;
     case 'Nożyce': myChoice = 2
@@ -120,6 +111,22 @@ $('.myChoice .btn').on('click', function(){
   }
   
   keypress();
+
+round();
+  if (execOnes === 0){
+    aiChoice();
+  } else {
+    if (aiHealth < myHealth){
+      aiCleverChoise();
+      console.log('Strategia #1');
+    } else {
+      aiCleverChoise2();
+      console.log('Strategia #2');
+    }
+  }
+  compare();
+  gameOver();
+
 })
 // ----------- Choice function END------------------
 
@@ -210,51 +217,48 @@ function aiChoice(){
 var win;
 function compare(){
   if (myChoice === 1 && aiIndex === 2){
-    $('.log').prepend('<p>'+'--> Wygrałeś rundę '+runda+'!'+'</p>');
+    $('.log').prepend('<p>'+'Wygrałeś rundę '+runda+'!'+'</p>');
     aihealthChange();
     win = false;
   }
   else if (myChoice === 1 && aiIndex === 3){
-    $('.log').prepend('<p>'+'--> Przegrałeś rundę '+runda+'!'+'</p>');
+    $('.log').prepend('<p>'+'Przegrałeś rundę '+runda+'!'+'</p>');
     myhealthChange();
     win = true;
   }
   else if (myChoice === 2 && aiIndex === 1){
-    $('.log').prepend('<p>'+'--> Przegrałeś rundę '+runda+'!'+'</p>');
+    $('.log').prepend('<p>'+'Przegrałeś rundę '+runda+'!'+'</p>');
     myhealthChange();
     win = true;
   }
   else if (myChoice === 2 && aiIndex === 3){
-    $('.log').prepend('<p>'+'--> Wygrałeś rundę '+runda+'!'+'</p>');
+    $('.log').prepend('<p>'+'Wygrałeś rundę '+runda+'!'+'</p>');
     aihealthChange();
     win = false;
   }
   else if (myChoice === 3 && aiIndex === 1){
-    $('.log').prepend('<p>'+'--> Wygrałeś rundę '+runda+'!'+'</p>');
+    $('.log').prepend('<p>'+'Wygrałeś rundę '+runda+'!'+'</p>');
     aihealthChange();
     win = false;
   }
   else if (myChoice === 3 && aiIndex === 2){
-    $('.log').prepend('<p>'+'--> Przegrałeś rundę '+runda+'!'+'</p>');
+    $('.log').prepend('<p>'+'Przegrałeś rundę '+runda+'!'+'</p>');
     myhealthChange();
     win = true;
   }
   else if (myChoice === aiIndex && myChoice !== 0){
-    $('.log').prepend('<p>'+'--> Remis'+'</p>');
+    $('.log').prepend('<p>'+'Remis'+'</p>');
   }
   else {
     $('.log').prepend('<p>'+'--> MUSISZ WYBRAĆ BROŃ! Naciśnij '+
                                 '<kbd>'+'K'+'</kbd>'+' - Kamień '+'LUB '+
                                 '<kbd>'+'P'+'</kbd>'+' - Papier '+'LUB '+
-                                '<kbd>'+'N'+'</kbd>'+' - Nożyce '+'a następnie '+
-                                '<kbd>'+'SPACE'+'</kbd>'+' - przycisk START'+'</p>');
+                                '<kbd>'+'N'+'</kbd>'+' - Nożyce ');
   }
 }
-// ----------- Compare choices function END------------------
 
-// ----------- Click START button function ------------------
-$('.start').on('click', function(){
-  
+
+function fight(){  
   round();
   if (execOnes === 0){
     aiChoice();
@@ -269,33 +273,36 @@ $('.start').on('click', function(){
   }
   compare();
   gameOver();
+};
 
-})
-// ----------- Click START button function END------------------
+// ----------- Compare choices function END------------------
 
+function keyboard(){
 
-$(document).unbind("keyup").keyup(function(e){ 
-    var code = e.which; // recommended to use e.which, it's normalized across browsers
-    if(code==32)
-    {
-        $('.start').click();
-    }
-    if(code==75) // Kamień
-    {
-      myChoice = 1;
-      keypress();
-    }
-    if(code==78) // Nożyce
-    {
-      myChoice = 2;
-      keypress();
-    }
-    if(code==80) // Papier
-    {
-      myChoice = 3;
-      keypress();
-    }
-});
+  $(document).unbind("keyup").keyup(function(e){ 
+      var code = e.which; // recommended to use e.which, it's normalized across browsers
+      
+      if(code==75) // Kamień
+      {
+        myChoice = 1;
+        keypress();
+        fight();
+      }
+      if(code==78) // Nożyce
+      {
+        myChoice = 2;
+        keypress();
+        fight();
+      }
+      if(code==80) // Papier
+      {
+        myChoice = 3;
+        keypress();
+        fight();
+      }
+  });
+
+};
 
 // ----------- Next ROUND function ------------------
 var runda = 0;
@@ -352,6 +359,7 @@ function reset(){
   $('.log').empty();
   $('.left-side').empty();
   $('.right-side').empty();
+  $('.round').empty();
 }
 
 reset();
