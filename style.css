@@ -71,6 +71,10 @@ body {
 	transform: translateX(-50%);
 	margin: 0;
 }
+.stone, .paper, .scissors{
+	background: #fff;
+	color: #000;
+}
 .help {
 	background: rgba(255,255,255,0.6);
 	padding: 15px;
